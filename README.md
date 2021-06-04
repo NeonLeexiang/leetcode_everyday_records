@@ -111,6 +111,48 @@ class Solution:
         return product - sums
 ```
 
+one-line solution:
+```python
+def subtractProductAndSum(n):
+    return eval('*'.join(str(n))) - eval('+'.join(str(n)))
+```
+
+other solutions:
+```python
+import numpy as np
+
+class Solution:
+    def subtractProductAndSum(self, n: int) -> int:
+        a = [int(x) for x in str(n)]
+        return np.prod(a) - np.sum(a)
+```
+```python
+from functools import reduce
+
+class Solution:
+    def subtractProductAndSum(self, n: int) -> int:
+        a = [int(x) for x in str(n)]
+        return reduce((lambda x, y: x * y), a) - reduce((lambda x, y: x + y), a)
+```
+faster methods:
+```python
+def subtractProductAndSum(self, n):
+        dm = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}
+        s = repr(n)
+        sm, pr = 0, 1
+        for c in s:
+            pr *= dm[c]
+            sm += dm[c]
+        return pr-sm
+```
+using `map` methods to solve the list data type
+```python
+def subtractProductAndSum(self, n):
+    A = map(int, str(n))
+    return reduce(operator.mul, A) - sum(A)
+```
+
+
 [comment]: <> (-------------------------------------------------------------)
 ## medium
 
